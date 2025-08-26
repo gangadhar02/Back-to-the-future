@@ -42,7 +42,7 @@ const Placeholder = () => (
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
-        <span className="font-permanent-marker text-xl">Upload Photo</span>
+        <span className="font-fondamento text-xl">Upload Photo</span>
     </div>
 );
 
@@ -53,19 +53,15 @@ const PolaroidCard: React.FC<PolaroidCardProps> = ({ imageUrl, caption, status, 
     const lastShakeTime = useRef(0);
     const lastVelocity = useRef({ x: 0, y: 0 });
 
-    // Reset states when the image URL changes or status goes to pending.
+    // When a new image URL is provided, reset the animation states to start the "developing" effect.
     useEffect(() => {
-        if (status === 'pending') {
+        if (imageUrl) {
             setIsDeveloped(false);
             setIsImageLoaded(false);
         }
-        if (status === 'done' && imageUrl) {
-            setIsDeveloped(false);
-            setIsImageLoaded(false);
-        }
-    }, [imageUrl, status]);
+    }, [imageUrl]);
 
-    // When the image is loaded, start the developing animation.
+    // When the image is successfully loaded into the browser, start the developing animation timer.
     useEffect(() => {
         if (isImageLoaded) {
             const timer = setTimeout(() => {
@@ -147,6 +143,7 @@ const PolaroidCard: React.FC<PolaroidCardProps> = ({ imageUrl, caption, status, 
                                 src={imageUrl}
                                 alt={caption}
                                 onLoad={() => setIsImageLoaded(true)}
+                                onError={() => console.error(`Error loading image for: ${caption}`)}
                                 className={`w-full h-full object-cover transition-all duration-[4000ms] ease-in-out ${
                                     isDeveloped 
                                     ? 'opacity-100 filter-none' 
@@ -160,7 +157,7 @@ const PolaroidCard: React.FC<PolaroidCardProps> = ({ imageUrl, caption, status, 
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 text-center px-2">
                     <p className={cn(
-                        "font-permanent-marker text-lg truncate",
+                        "font-fondamento text-lg truncate",
                         status === 'done' && imageUrl ? 'text-black' : 'text-neutral-800'
                     )}>
                         {caption}

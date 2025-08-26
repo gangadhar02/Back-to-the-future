@@ -38,8 +38,8 @@ interface GeneratedImage {
     error?: string;
 }
 
-const primaryButtonClasses = "font-permanent-marker text-xl text-center text-black bg-yellow-400 py-3 px-8 rounded-sm transform transition-transform duration-200 hover:scale-105 hover:-rotate-2 hover:bg-yellow-300 shadow-[2px_2px_0px_2px_rgba(0,0,0,0.2)]";
-const secondaryButtonClasses = "font-permanent-marker text-xl text-center text-white bg-white/10 backdrop-blur-sm border-2 border-white/80 py-3 px-8 rounded-sm transform transition-transform duration-200 hover:scale-105 hover:rotate-2 hover:bg-white hover:text-black";
+const primaryButtonClasses = "font-fondamento text-xl text-center text-black bg-yellow-400 py-3 px-8 rounded-sm transform transition-transform duration-200 hover:scale-105 hover:-rotate-2 hover:bg-yellow-300 shadow-[2px_2px_0px_2px_rgba(0,0,0,0.2)]";
+const secondaryButtonClasses = "font-fondamento text-xl text-center text-white bg-white/10 backdrop-blur-sm border-2 border-white/80 py-3 px-8 rounded-sm transform transition-transform duration-200 hover:scale-105 hover:rotate-2 hover:bg-white hover:text-black";
 
 
 function App() {
@@ -201,8 +201,8 @@ function App() {
             
             <div className="z-10 flex flex-col items-center justify-center w-full h-full">
                 <div className="text-center mb-10">
-                    <h1 className="text-6xl md:text-8xl font-caveat font-bold text-neutral-100">Past Forward</h1>
-                    <p className="font-permanent-marker text-neutral-300 mt-2 text-xl tracking-wide">Generate yourself through the decades.</p>
+                    <h1 className="text-6xl md:text-8xl font-fondamento text-neutral-100">Past Forward</h1>
+                    <p className="font-fondamento text-neutral-300 mt-2 text-xl tracking-wide">Generate yourself through the decades.</p>
                 </div>
 
                 {appState === 'idle' && (
@@ -238,7 +238,7 @@ function App() {
                                  />
                             </label>
                             <input id="file-upload" type="file" className="hidden" accept="image/png, image/jpeg, image/webp" onChange={handleImageUpload} />
-                            <p className="mt-8 font-permanent-marker text-neutral-500 text-center max-w-xs text-lg">
+                            <p className="mt-8 font-fondamento text-neutral-500 text-center max-w-xs text-lg">
                                 Click the polaroid to upload your photo and start your journey through time.
                             </p>
                         </motion.div>
