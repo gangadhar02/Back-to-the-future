@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
 */
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Modality } from "@google/genai";
 import type { GenerateContentResponse } from "@google/genai";
 
 const API_KEY = process.env.API_KEY;
@@ -46,6 +46,9 @@ export async function generateDecadeImage(imageDataUrl: string, prompt: string):
       const response: GenerateContentResponse = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image-preview', //🍌
         contents: { parts: [imagePart, textPart] },
+        config: {
+            responseModalities: [Modality.IMAGE, Modality.TEXT],
+        },
       });
       
       const imagePartFromResponse = response.candidates?.[0]?.content?.parts?.find(part => part.inlineData);
